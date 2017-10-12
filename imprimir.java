@@ -14,6 +14,7 @@ import javax.print.PrintServiceLookup;
 import javax.print.SimpleDoc; 
 import javax.swing.JOptionPane; 
 public class Ticket{ 
+	int variable borrar;
 static ArrayList<String> CabezaLineas=new ArrayList<String>(); 
 static ArrayList<String> subCabezaLineas=new ArrayList<String>(); 
 static ArrayList<String> items=new ArrayList<String>(); 
