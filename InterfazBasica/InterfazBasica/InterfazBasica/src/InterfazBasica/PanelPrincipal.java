@@ -39,6 +39,8 @@ public class PanelPrincipal extends javax.swing.JPanel {
         TablaVenta.getColumn("D").setHeaderValue("unidad");
 
         mtmp.addRegister("Manzana", 10.0, "kg.");
+        mtmp.addRegister("Pera", 15.0, "kg.");
+        mtmp.addRegister("Agua", 12.0, "litro");
 
     }
 
