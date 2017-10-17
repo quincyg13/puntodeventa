@@ -177,6 +177,7 @@ public class PanelPrincipal extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ImprimirTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirTicketActionPerformed
+        Ticket.LimpiarDocumento();
         Date date = new Date();
         SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat hora = new SimpleDateFormat("hh:mm:ss aa");
