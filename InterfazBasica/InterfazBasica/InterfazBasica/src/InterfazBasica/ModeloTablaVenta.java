@@ -28,6 +28,10 @@ class ModeloTablaVenta extends AbstractTableModel{
 
 
     public void addRegister(int cantidad,String producto, double precio, String unidad){
+        char[] arrayChar = producto.toCharArray();
+        for (int i = arrayChar.length; i < 15; i++) {
+            producto=producto+" ";
+        }
         list.add(new Register(cantidad,producto, precio, unidad));
         this.fireTableDataChanged();
     }
