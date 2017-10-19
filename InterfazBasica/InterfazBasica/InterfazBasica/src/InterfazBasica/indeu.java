@@ -31,10 +31,10 @@ public class indeu extends javax.swing.JFrame {
     private void initComponents() {
 
         Nombre = new javax.swing.JLabel();
-        Ocupacion = new javax.swing.JLabel();
+        Telefono = new javax.swing.JLabel();
         Lugar = new javax.swing.JLabel();
         Direccion = new javax.swing.JLabel();
-        txtOcupacion = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
         txtLugar = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
         BotonGuardar = new javax.swing.JButton();
@@ -52,7 +52,7 @@ public class indeu extends javax.swing.JFrame {
         Nombre.setText("Nombre de la empresa:");
         Nombre.setToolTipText("");
 
-        Ocupacion.setText("Telefono:");
+        Telefono.setText("Telefono:");
 
         Lugar.setText("Lugar:");
 
@@ -93,15 +93,6 @@ public class indeu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(Ocupacion)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtOcupacion, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(Nombre)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(Lugar)
@@ -109,7 +100,15 @@ public class indeu extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtLugar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Nombre)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Telefono)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(84, 84, 84)
                         .addComponent(BotonGuardar)
@@ -125,10 +124,10 @@ public class indeu extends javax.swing.JFrame {
                     .addComponent(Nombre)
                     .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Ocupacion)
-                    .addComponent(txtOcupacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Telefono)
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLugar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Lugar))
@@ -140,7 +139,7 @@ public class indeu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BotonGuardar)
                     .addComponent(BotonSalir))
-                .addContainerGap(71, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
 
         pack();
@@ -166,7 +165,7 @@ public class indeu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"por favor ingrese el nombre");
             return;
         }
-         if(txtOcupacion.getText().equals("")){
+         if(txtTelefono.getText().equals("")){
             JOptionPane.showMessageDialog(null,"por favor ingrese el numero telefónico");
             return;
         }
@@ -181,13 +180,14 @@ public class indeu extends javax.swing.JFrame {
             return;
         }
         //variables 
-        String Nombre,Ocupacion,Lugar,Direccion;
+        String Nombre,Ocupacion,Lugar,Direccion,Telefono;
+    
      Nombre=txtnombre.getText();
-     Ocupacion=txtOcupacion.getText();
+     Telefono=txtTelefono.getText();
      Lugar=txtLugar.getText();
      Direccion=txtDireccion.getText();
      
-     JOptionPane.showMessageDialog(null,"Nombre es: "+Nombre+"Ocupacion es: "+Ocupacion+" ");
+     JOptionPane.showMessageDialog(null,"El nombre de la empresa es: "+Nombre+"\nEl telefono es: "+Telefono+"\nEl lugar es: "+Lugar+"\n La Direccion es: "+Direccion+"");
      
      //guardado
      //Persona persona=new Persona(Nombre,Ocupacion,Lugar,Direccion);
@@ -239,10 +239,10 @@ public class indeu extends javax.swing.JFrame {
     private javax.swing.JLabel Direccion;
     private javax.swing.JLabel Lugar;
     private javax.swing.JLabel Nombre;
-    private javax.swing.JLabel Ocupacion;
+    private javax.swing.JLabel Telefono;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtLugar;
-    private javax.swing.JTextField txtOcupacion;
+    private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtnombre;
     // End of variables declaration//GEN-END:variables
 
