@@ -48,6 +48,11 @@ class ModeloTablaVenta extends AbstractTableModel{
             return null;
     }
 
+    void removeRow(int fsel) {
+         //To change body of generated methods, choose Tools | Templates.
+        list.remove(fsel);
+    }
+
     class Register{
         int cantidad;
         String producto;

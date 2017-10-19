@@ -5,10 +5,9 @@
  */
 package InterfazBasica;
 
-import java.text.SimpleDateFormat;
+import java.text.*;
 import java.util.Date;
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,7 +17,7 @@ public class PanelPrincipal extends javax.swing.JPanel {
 
     private final ModeloTablaVenta mtmv;
     private final ModeloTablaProducto mtmp;
-    double total;
+    double total=0.0;
 
     /**
      * Creates new form PanelPrinc
@@ -61,6 +60,7 @@ public class PanelPrincipal extends javax.swing.JPanel {
         PrecioTotal = new javax.swing.JLabel();
         ImprimirTicket = new javax.swing.JButton();
         agregarProducto = new javax.swing.JButton();
+        eliminarProducto = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(600, 600));
 
@@ -132,6 +132,13 @@ public class PanelPrincipal extends javax.swing.JPanel {
             }
         });
 
+        eliminarProducto.setText("eliminar producto");
+        eliminarProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarProductoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,21 +155,24 @@ public class PanelPrincipal extends javax.swing.JPanel {
                                 .addComponent(Total)
                                 .addGap(18, 18, 18)
                                 .addComponent(PrecioTotal)))
-                        .addContainerGap(30, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(agregarProducto))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(agregarProducto)
+                            .addComponent(eliminarProducto)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(191, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(agregarProducto)
-                        .addGap(56, 56, 56)))
+                        .addGap(27, 27, 27)
+                        .addComponent(eliminarProducto)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,17 +245,51 @@ public class PanelPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_ImprimirTicketActionPerformed
 
     private void agregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarProductoActionPerformed
-        int row = TablaProducto.getSelectedRow();
-        //System.out.println(row);
-        int cantidad = 1;
-        String producto = TablaProducto.getValueAt(row, 0).toString();
-        double precio = (double) TablaProducto.getValueAt(row, 1);
-        String unidad = TablaProducto.getValueAt(row, 2).toString();
-        mtmv.addRegister(cantidad, producto, precio, unidad);
-
-        total = total + (double) mtmv.getValueAt(row, 2);
-        PrecioTotal.setText("$ " + total);
+        try {
+            int row = TablaProducto.getSelectedRow();
+            //System.out.println(row);
+            int cantidad = 1;
+            String producto = TablaProducto.getValueAt(row, 0).toString();
+            double precio = (double) TablaProducto.getValueAt(row, 1);
+            String unidad = TablaProducto.getValueAt(row, 2).toString();
+            mtmv.addRegister(cantidad, producto, precio, unidad);
+            total = total + precio;
+            PrecioTotal.setText("$ " + total);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"error no se pudo añadir la fila", "Error",JOptionPane.ERROR_MESSAGE);         
+        }
+        
     }//GEN-LAST:event_agregarProductoActionPerformed
+
+    private void eliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarProductoActionPerformed
+        // TODO add your handling code here:
+         int fsel;
+        int resp;
+        
+        try{
+            fsel = TablaVenta.getSelectedRow();
+            if (fsel==-1) {
+                JOptionPane.showMessageDialog(null,"debes selecciona una fila", "adverteincia",JOptionPane.WARNING_MESSAGE);         
+                
+            }else{
+                resp= JOptionPane.showConfirmDialog(null,"seguro que quieeres eliminar", "eliminar",JOptionPane.YES_NO_OPTION);
+                if (resp==JOptionPane.YES_OPTION) {
+                    total = total - (double) mtmv.getValueAt(fsel, 2);
+                    PrecioTotal.setText("$ " + total);
+                    int[] rows = TablaVenta.getSelectedRows();
+                    for(int i=0;i<rows.length;i++){
+                      mtmv.removeRow(rows[i]-i);
+   }
+                    
+                    
+                    
+                }
+            }
+        
+        }catch(Exception e){
+        JOptionPane.showMessageDialog(null,"error no se pudo eliminar la fila", "Error",JOptionPane.ERROR_MESSAGE);         
+        }
+    }//GEN-LAST:event_eliminarProductoActionPerformed
 
     void addEventos(OyentePrincipal oyente) {
         //ImprimirTicket.addActionListener(oyente);
@@ -260,6 +304,7 @@ public class PanelPrincipal extends javax.swing.JPanel {
     private javax.swing.JTable TablaVenta;
     private javax.swing.JLabel Total;
     private javax.swing.JButton agregarProducto;
+    private javax.swing.JButton eliminarProducto;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
