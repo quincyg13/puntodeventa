@@ -32,18 +32,6 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="Ocupacion" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="txtOcupacion" min="-2" pref="217" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="Nombre" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtnombre" min="-2" pref="217" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="Lugar" min="-2" max="-2" attributes="0"/>
@@ -54,6 +42,16 @@
                                   <Component id="txtLugar" alignment="1" min="-2" pref="218" max="-2" attributes="0"/>
                                   <Component id="txtDireccion" alignment="1" min="-2" pref="218" max="-2" attributes="0"/>
                               </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="Nombre" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="txtnombre" min="-2" pref="217" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="Telefono" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="txtTelefono" min="-2" pref="217" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -77,11 +75,11 @@
                   <Component id="txtnombre" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="Ocupacion" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtOcupacion" alignment="0" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="Telefono" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtLugar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Lugar" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -96,7 +94,7 @@
                   <Component id="BotonGuardar" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="BotonSalir" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="71" max="32767" attributes="0"/>
+              <EmptySpace pref="68" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -108,7 +106,7 @@
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="Ocupacion">
+    <Component class="javax.swing.JLabel" name="Telefono">
       <Properties>
         <Property name="text" type="java.lang.String" value="Telefono:"/>
       </Properties>
@@ -123,7 +121,7 @@
         <Property name="text" type="java.lang.String" value="Direccion:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtOcupacion">
+    <Component class="javax.swing.JTextField" name="txtTelefono">
     </Component>
     <Component class="javax.swing.JTextField" name="txtLugar">
       <Events>
