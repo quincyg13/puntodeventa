@@ -7,7 +7,7 @@ package InterfazBasica;
 
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
-
+//hola ya lo corregi :3
 /**
  *
  * @author omar
