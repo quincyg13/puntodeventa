@@ -51,7 +51,19 @@
                               <Component id="txtFiltro" min="-2" pref="78" max="-2" attributes="0"/>
                           </Group>
                       </Group>
+<<<<<<< HEAD
                       <EmptySpace pref="21" max="32767" attributes="0"/>
+=======
+                      <EmptySpace max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Component id="jScrollPane1" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="agregarProducto" min="-2" max="-2" attributes="0"/>
+                          <Component id="eliminarProducto" min="-2" max="-2" attributes="0"/>
+                      </Group>
+>>>>>>> 07eeb24ee23c27505a0680c0e9ecfe3a11a19a14
                   </Group>
               </Group>
           </Group>
@@ -60,6 +72,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+<<<<<<< HEAD
               <EmptySpace pref="97" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="comboFiltro" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -70,8 +83,15 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" alignment="1" min="-2" pref="121" max="-2" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
+=======
+              <EmptySpace pref="191" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jScrollPane1" min="-2" pref="121" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+>>>>>>> 07eeb24ee23c27505a0680c0e9ecfe3a11a19a14
                       <Component id="agregarProducto" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="eliminarProducto" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -187,6 +207,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="agregarProductoActionPerformed"/>
       </Events>
     </Component>
+<<<<<<< HEAD
     <Component class="javax.swing.JComboBox" name="comboFiltro">
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -210,6 +231,14 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtFiltroActionPerformed"/>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtFiltroKeyTyped"/>
+=======
+    <Component class="javax.swing.JButton" name="eliminarProducto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="eliminar producto"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarProductoActionPerformed"/>
+>>>>>>> 07eeb24ee23c27505a0680c0e9ecfe3a11a19a14
       </Events>
     </Component>
   </SubComponents>

@@ -28,6 +28,10 @@ class ModeloTablaVenta extends AbstractTableModel{
 
 
     public void addRegister(int cantidad,String producto, double precio, String unidad){
+        char[] arrayChar = producto.toCharArray();
+        for (int i = arrayChar.length; i < 15; i++) {
+            producto=producto+" ";
+        }
         list.add(new Register(cantidad,producto, precio, unidad));
         this.fireTableDataChanged();
     }
@@ -42,6 +46,11 @@ class ModeloTablaVenta extends AbstractTableModel{
         case 3: return r.unidad; 
         }
             return null;
+    }
+
+    void removeRow(int fsel) {
+         //To change body of generated methods, choose Tools | Templates.
+        list.remove(fsel);
     }
 
     class Register{
