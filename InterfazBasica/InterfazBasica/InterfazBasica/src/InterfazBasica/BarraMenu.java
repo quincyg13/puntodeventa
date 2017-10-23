@@ -6,10 +6,11 @@
 package InterfazBasica;
 
 
-
+import InterfazBasica.OyenteMenu;
 import java.awt.event.*;
 import javax.swing.*;
 import InterfazBasica.indeu;
+import InterfazBasica.IngresarProducto;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,6 +21,12 @@ public class BarraMenu {
      JMenuBar menuBar;
         JMenu producto, acercaDe;
         JMenuItem nuevoProducto,ingresarDatos,venderProducto;
+    private final ModeloTablaProducto mtmp;
+
+
+    BarraMenu(ModeloTablaProducto mtmp) {
+        this.mtmp=mtmp;
+    }
  
 public JMenuBar createMenuBar() {
  
@@ -35,6 +42,16 @@ public JMenuBar createMenuBar() {
         //a group of JMenuItems
         nuevoProducto = new JMenuItem("Nuevo Producto...");
         producto.add(nuevoProducto);
+        
+         nuevoProducto.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent evt)
+            {
+                //mande a llamar mi JFrame uqe ya tenia hecho llamado indeu y lo mostre
+               new IngresarProducto(mtmp).setVisible(true);
+            }
+            }); 
+      
+     
 
         venderProducto = new JMenuItem("Vender Producto...");
         producto.add(venderProducto);

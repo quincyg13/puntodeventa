@@ -46,6 +46,7 @@ class ModeloTablaVenta extends AbstractTableModel{
 
     void removeRow(int fsel) {
         list.remove(fsel);
+        this.fireTableDataChanged();
     }
 
     class Register{

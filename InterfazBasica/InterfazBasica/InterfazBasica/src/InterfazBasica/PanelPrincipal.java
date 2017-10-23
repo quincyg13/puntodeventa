@@ -50,22 +50,21 @@ public class PanelPrincipal extends javax.swing.JPanel {
         mtmp.addRegister("Uva", 55.0, "kg.");
 
     }
-    
+
     public void filtro() {
         int columnaABuscar = 0;
         if (comboFiltro.getSelectedItem() == "producto") {
             columnaABuscar = 0;
         }
 
-if (comboFiltro.getSelectedItem().toString() == "precio") {
+        if (comboFiltro.getSelectedItem().toString() == "precio") {
             columnaABuscar = 1;
         }
         if (comboFiltro.getSelectedItem() == "unidad") {
             columnaABuscar = 2;
         }
         trsFiltro.setRowFilter(RowFilter.regexFilter(txtFiltro.getText(), columnaABuscar));
-    }        
-   
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -89,7 +88,7 @@ if (comboFiltro.getSelectedItem().toString() == "precio") {
         txtFiltro = new javax.swing.JTextField();
         eliminarProducto = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(600, 600));
+        setPreferredSize(new java.awt.Dimension(800, 600));
 
         TablaProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -141,11 +140,14 @@ if (comboFiltro.getSelectedItem().toString() == "precio") {
         });
         jScrollPane2.setViewportView(TablaVenta);
 
+        Total.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         Total.setText("TOTAL:");
 
+        PrecioTotal.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         PrecioTotal.setText("$ 0.0");
 
-        ImprimirTicket.setText("Imprimir ticket");
+        ImprimirTicket.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ImprimirTicket.setText("Cobrar");
         ImprimirTicket.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ImprimirTicketActionPerformed(evt);
@@ -189,59 +191,61 @@ if (comboFiltro.getSelectedItem().toString() == "precio") {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(agregarProducto)
-                            .addComponent(eliminarProducto)))
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(ImprimirTicket)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(agregarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(eliminarProducto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(Total)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(PrecioTotal))))
+                                        .addGap(566, 566, 566)
+                                        .addComponent(Total)))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(ImprimirTicket)
+                                    .addComponent(PrecioTotal))))
+                        .addContainerGap(545, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
+                .addContainerGap(12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(agregarProducto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(eliminarProducto)
-                        .addGap(18, 18, 18)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(Total)
-                            .addComponent(PrecioTotal))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(agregarProducto)
                         .addGap(18, 18, 18)
-                        .addComponent(ImprimirTicket)
-                        .addContainerGap(277, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))))
+                        .addComponent(eliminarProducto)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Total)
+                    .addComponent(PrecioTotal))
+                .addGap(18, 18, 18)
+                .addComponent(ImprimirTicket)
+                .addGap(446, 446, 446))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -312,9 +316,9 @@ if (comboFiltro.getSelectedItem().toString() == "precio") {
             total = total + precio;
             PrecioTotal.setText("$ " + total);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"error no se pudo añadir la fila", "Error",JOptionPane.ERROR_MESSAGE);         
+            JOptionPane.showMessageDialog(null, "error no se pudo añadir la fila", "Error", JOptionPane.ERROR_MESSAGE);
         }
-           
+
     }//GEN-LAST:event_agregarProductoActionPerformed
 
     private void txtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyTyped
@@ -338,28 +342,26 @@ if (comboFiltro.getSelectedItem().toString() == "precio") {
 
     private void eliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarProductoActionPerformed
         // TODO add your handling code here:
-         int fsel;
+        int fsel;
         int resp;
-        
-        try{
+
+        try {
             fsel = TablaVenta.getSelectedRow();
-            if (fsel==-1) {
-                JOptionPane.showMessageDialog(null,"debes selecciona una fila"+fsel, "adverteincia",JOptionPane.WARNING_MESSAGE);         
-                
-            }else{
-                resp= JOptionPane.showConfirmDialog(null,"seguro que quieeres eliminar"+fsel, "eliminar",JOptionPane.YES_NO_OPTION);
-                if (resp==JOptionPane.YES_OPTION) {
+            if (fsel == -1) {
+                JOptionPane.showMessageDialog(null, "seleccione un producto para eliminar", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+            } else {
+                resp = JOptionPane.showConfirmDialog(null, "seguro que quieres eliminar " + mtmv.getValueAt(fsel, 1), "eliminar", JOptionPane.YES_NO_OPTION);
+                if (resp == JOptionPane.YES_OPTION) {
                     total = total - (double) mtmv.getValueAt(fsel, 2);
                     PrecioTotal.setText("$ " + total);
                     mtmv.removeRow(fsel);
-                    
-                    
-                    
+
                 }
             }
-        
-        }catch(Exception e){
-        JOptionPane.showMessageDialog(null,"error no se pudo eliminar la fila", "Error",JOptionPane.ERROR_MESSAGE);         
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "error no se pudo eliminar la fila", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_eliminarProductoActionPerformed
 

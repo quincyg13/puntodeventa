@@ -5,9 +5,7 @@
  */
 package InterfazBasica;
 
-
 import javax.swing.JOptionPane;
-
 
 /**
  *
@@ -15,19 +13,13 @@ import javax.swing.JOptionPane;
  */
 public class indeu extends javax.swing.JFrame {
 
-    
-
-   
-
-   
-
-   
-
     /**
      * Creates new form indeu
      */
     public indeu() {
         initComponents();
+
+        this.setLocation(100, 100);
     }
 
     /**
@@ -50,7 +42,6 @@ public class indeu extends javax.swing.JFrame {
         BotonSalir = new javax.swing.JButton();
         txtnombre = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("INGRESAR DATOS");
         addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -158,47 +149,47 @@ public class indeu extends javax.swing.JFrame {
     }//GEN-LAST:event_txtLugarActionPerformed
 
     private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
-        System.exit(0);
+        this.setVisible(false);
     }//GEN-LAST:event_BotonSalirActionPerformed
 
     private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
-     char TipoDeTecla = evt.getKeyChar();
-     if(Character.isDigit(TipoDeTecla)){
-         evt.consume();
-     }
+        char TipoDeTecla = evt.getKeyChar();
+        if (Character.isDigit(TipoDeTecla)) {
+            evt.consume();
+        }
     }//GEN-LAST:event_formKeyTyped
 
     private void BotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGuardarActionPerformed
-        if(txtnombre.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"por favor ingrese el nombre");
+        if (txtnombre.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "por favor ingrese el nombre");
             return;
         }
-         if(txtOcupacion.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"por favor ingrese el numero telefónico");
+        if (txtOcupacion.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "por favor ingrese el numero telefónico");
             return;
         }
-         
-          if(txtLugar.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"por favor ingrese el lugar");
+
+        if (txtLugar.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "por favor ingrese el lugar");
             return;
         }
-          
-           if(txtDireccion.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"por favor ingrese la direccion");
+
+        if (txtDireccion.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "por favor ingrese la direccion");
             return;
         }
         //variables 
-        String Nombre,Ocupacion,Lugar,Direccion;
-     Nombre=txtnombre.getText();
-     Ocupacion=txtOcupacion.getText();
-     Lugar=txtLugar.getText();
-     Direccion=txtDireccion.getText();
-     
-     JOptionPane.showMessageDialog(null,"Nombre es: "+Nombre+"Ocupacion es: "+Ocupacion+" ");
-     
-     //guardado
-     //Persona persona=new Persona(Nombre,Ocupacion,Lugar,Direccion);
-     //agenda.GuardarPersona(persona);
+        String Nombre, Ocupacion, Lugar, Direccion;
+        Nombre = txtnombre.getText();
+        Ocupacion = txtOcupacion.getText();
+        Lugar = txtLugar.getText();
+        Direccion = txtDireccion.getText();
+
+        JOptionPane.showMessageDialog(null, "Nombre es: " + Nombre + "Ocupacion es: " + Ocupacion + " ");
+
+        //guardado
+        //Persona persona=new Persona(Nombre,Ocupacion,Lugar,Direccion);
+        //agenda.GuardarPersona(persona);
     }//GEN-LAST:event_BotonGuardarActionPerformed
 
     private void txtnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombreActionPerformed
@@ -255,17 +246,7 @@ public class indeu extends javax.swing.JFrame {
 
     private static class agenda {
 
-      //  private static void GuardarPersona(Persona persona) {
-         
+        //  private static void GuardarPersona(Persona persona) {
     }
 
-   
-
-       
-    }
-
-    
-
-        
-    
-
+}
