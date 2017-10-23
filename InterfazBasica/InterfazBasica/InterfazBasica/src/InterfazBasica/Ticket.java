@@ -69,12 +69,4 @@ try{
     pj.print(doc,null); 
 }catch(Exception e){ } 
 } 
-public static void LimpiarDocumento(){
-    CabezaLineas.clear(); 
-    subCabezaLineas.clear();
-    items.clear();
-    totales.clear();
-    LineasPie.clear(); 
-
-} 
 } 

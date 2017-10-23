@@ -5,9 +5,15 @@
  */
 package InterfazBasica;
 
-import java.text.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -17,7 +23,8 @@ public class PanelPrincipal extends javax.swing.JPanel {
 
     private final ModeloTablaVenta mtmv;
     private final ModeloTablaProducto mtmp;
-    double total=0.0;
+    private TableRowSorter trsFiltro;
+    double total;
 
     /**
      * Creates new form PanelPrinc
@@ -38,10 +45,27 @@ public class PanelPrincipal extends javax.swing.JPanel {
         TablaVenta.getColumn("D").setHeaderValue("unidad");
 
         mtmp.addRegister("Manzana", 10.0, "kg.");
-        mtmp.addRegister("Pera", 15.0, "kg.");
-        mtmp.addRegister("Agua", 12.0, "litro");
+        mtmp.addRegister("Mango", 12.0, "kg.");
+        mtmp.addRegister("Naranja", 30.0, "kg.");
+        mtmp.addRegister("Uva", 55.0, "kg.");
 
     }
+    
+    public void filtro() {
+        int columnaABuscar = 0;
+        if (comboFiltro.getSelectedItem() == "producto") {
+            columnaABuscar = 0;
+        }
+
+if (comboFiltro.getSelectedItem().toString() == "precio") {
+            columnaABuscar = 1;
+        }
+        if (comboFiltro.getSelectedItem() == "unidad") {
+            columnaABuscar = 2;
+        }
+        trsFiltro.setRowFilter(RowFilter.regexFilter(txtFiltro.getText(), columnaABuscar));
+    }        
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,6 +84,9 @@ public class PanelPrincipal extends javax.swing.JPanel {
         PrecioTotal = new javax.swing.JLabel();
         ImprimirTicket = new javax.swing.JButton();
         agregarProducto = new javax.swing.JButton();
+        comboFiltro = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        txtFiltro = new javax.swing.JTextField();
         eliminarProducto = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(600, 600));
@@ -132,7 +159,22 @@ public class PanelPrincipal extends javax.swing.JPanel {
             }
         });
 
-        eliminarProducto.setText("eliminar producto");
+        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "producto", "unidad", "precio" }));
+
+        jLabel1.setText("Buscar:");
+
+        txtFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFiltroActionPerformed(evt);
+            }
+        });
+        txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFiltroKeyTyped(evt);
+            }
+        });
+
+        eliminarProducto.setText("Eliminar Producto");
         eliminarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarProductoActionPerformed(evt);
@@ -147,36 +189,47 @@ public class PanelPrincipal extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ImprimirTicket)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Total)
-                                .addGap(18, 18, 18)
-                                .addComponent(PrecioTotal)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(agregarProducto)
-                            .addComponent(eliminarProducto)))))
+                            .addComponent(eliminarProducto)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(ImprimirTicket)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(Total)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(PrecioTotal))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(191, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(agregarProducto)
-                        .addGap(27, 27, 27)
-                        .addComponent(eliminarProducto)))
+                .addContainerGap(47, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24))
+                        .addComponent(agregarProducto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(eliminarProducto)
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -184,12 +237,15 @@ public class PanelPrincipal extends javax.swing.JPanel {
                             .addComponent(PrecioTotal))
                         .addGap(18, 18, 18)
                         .addComponent(ImprimirTicket)
-                        .addContainerGap(175, Short.MAX_VALUE))))
+                        .addContainerGap(277, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29))))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void ImprimirTicketActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirTicketActionPerformed
-        Ticket.LimpiarDocumento();
         Date date = new Date();
         SimpleDateFormat fecha = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat hora = new SimpleDateFormat("hh:mm:ss aa");
@@ -258,8 +314,27 @@ public class PanelPrincipal extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"error no se pudo añadir la fila", "Error",JOptionPane.ERROR_MESSAGE);         
         }
-        
+           
     }//GEN-LAST:event_agregarProductoActionPerformed
+
+    private void txtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyTyped
+
+        // TODO add your handling code here:
+        txtFiltro.addKeyListener(new KeyAdapter() {
+            public void keyReleased(final KeyEvent e) {
+                String cadena = (txtFiltro.getText());
+                txtFiltro.setText(cadena);
+                repaint();
+                filtro();
+            }
+        });
+        trsFiltro = new TableRowSorter(TablaProducto.getModel());
+        TablaProducto.setRowSorter(trsFiltro);
+    }//GEN-LAST:event_txtFiltroKeyTyped
+
+    private void txtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFiltroActionPerformed
 
     private void eliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarProductoActionPerformed
         // TODO add your handling code here:
@@ -269,17 +344,14 @@ public class PanelPrincipal extends javax.swing.JPanel {
         try{
             fsel = TablaVenta.getSelectedRow();
             if (fsel==-1) {
-                JOptionPane.showMessageDialog(null,"debes selecciona una fila", "adverteincia",JOptionPane.WARNING_MESSAGE);         
+                JOptionPane.showMessageDialog(null,"debes selecciona una fila"+fsel, "adverteincia",JOptionPane.WARNING_MESSAGE);         
                 
             }else{
-                resp= JOptionPane.showConfirmDialog(null,"seguro que quieeres eliminar", "eliminar",JOptionPane.YES_NO_OPTION);
+                resp= JOptionPane.showConfirmDialog(null,"seguro que quieeres eliminar"+fsel, "eliminar",JOptionPane.YES_NO_OPTION);
                 if (resp==JOptionPane.YES_OPTION) {
                     total = total - (double) mtmv.getValueAt(fsel, 2);
                     PrecioTotal.setText("$ " + total);
-                    int[] rows = TablaVenta.getSelectedRows();
-                    for(int i=0;i<rows.length;i++){
-                      mtmv.removeRow(rows[i]-i);
-   }
+                    mtmv.removeRow(fsel);
                     
                     
                     
@@ -304,8 +376,11 @@ public class PanelPrincipal extends javax.swing.JPanel {
     private javax.swing.JTable TablaVenta;
     private javax.swing.JLabel Total;
     private javax.swing.JButton agregarProducto;
+    private javax.swing.JComboBox<String> comboFiltro;
     private javax.swing.JButton eliminarProducto;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField txtFiltro;
     // End of variables declaration//GEN-END:variables
 }
