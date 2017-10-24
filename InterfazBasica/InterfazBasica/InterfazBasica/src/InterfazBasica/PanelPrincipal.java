@@ -343,7 +343,7 @@ public class PanelPrincipal extends javax.swing.JPanel {
         try {
             fsel = TablaVenta.getSelectedRow();
             if (fsel == -1) {
-                JOptionPane.showMessageDialog(null, "seleccione uns producto para eliminar", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null, "seleccione un producto para eliminar", "Advertencia", JOptionPane.WARNING_MESSAGE);
 
             } else {
                 resp = JOptionPane.showConfirmDialog(null, "seguro que quieres eliminar " + mtmv.getValueAt(fsel, 1), "eliminar", JOptionPane.YES_NO_OPTION);
