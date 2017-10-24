@@ -50,22 +50,21 @@ public class PanelPrincipal extends javax.swing.JPanel {
         mtmp.addRegister("Uva", 55.0, "kg.");
 
     }
-    
+
     public void filtro() {
         int columnaABuscar = 0;
         if (comboFiltro.getSelectedItem() == "producto") {
             columnaABuscar = 0;
         }
 
-if (comboFiltro.getSelectedItem().toString() == "precio") {
+        if (comboFiltro.getSelectedItem().toString() == "precio") {
             columnaABuscar = 1;
         }
         if (comboFiltro.getSelectedItem() == "unidad") {
             columnaABuscar = 2;
         }
         trsFiltro.setRowFilter(RowFilter.regexFilter(txtFiltro.getText(), columnaABuscar));
-    }        
-   
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -312,9 +311,9 @@ if (comboFiltro.getSelectedItem().toString() == "precio") {
             total = total + precio;
             PrecioTotal.setText("$ " + total);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"error no se pudo añadir la fila", "Error",JOptionPane.ERROR_MESSAGE);         
+            JOptionPane.showMessageDialog(null, "error no se pudo añadir la fila", "Error", JOptionPane.ERROR_MESSAGE);
         }
-           
+
     }//GEN-LAST:event_agregarProductoActionPerformed
 
     private void txtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFiltroKeyTyped
@@ -338,28 +337,26 @@ if (comboFiltro.getSelectedItem().toString() == "precio") {
 
     private void eliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarProductoActionPerformed
         // TODO add your handling code here:
-         int fsel;
+        int fsel;
         int resp;
-        
-        try{
+
+        try {
             fsel = TablaVenta.getSelectedRow();
-            if (fsel==-1) {
-                JOptionPane.showMessageDialog(null,"debes selecciona una fila"+fsel, "adverteincia",JOptionPane.WARNING_MESSAGE);         
-                
-            }else{
-                resp= JOptionPane.showConfirmDialog(null,"seguro que quieeres eliminar"+fsel, "eliminar",JOptionPane.YES_NO_OPTION);
-                if (resp==JOptionPane.YES_OPTION) {
+            if (fsel == -1) {
+                JOptionPane.showMessageDialog(null, "seleccione uns producto para eliminar", "Advertencia", JOptionPane.WARNING_MESSAGE);
+
+            } else {
+                resp = JOptionPane.showConfirmDialog(null, "seguro que quieres eliminar " + mtmv.getValueAt(fsel, 1), "eliminar", JOptionPane.YES_NO_OPTION);
+                if (resp == JOptionPane.YES_OPTION) {
                     total = total - (double) mtmv.getValueAt(fsel, 2);
                     PrecioTotal.setText("$ " + total);
                     mtmv.removeRow(fsel);
-                    
-                    
-                    
+
                 }
             }
-        
-        }catch(Exception e){
-        JOptionPane.showMessageDialog(null,"error no se pudo eliminar la fila", "Error",JOptionPane.ERROR_MESSAGE);         
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "error no se pudo eliminar la fila", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_eliminarProductoActionPerformed
 
