@@ -31,7 +31,7 @@ public class Principal {
         panelprincipal.addEventos(oyente);
         //menu.addEventos(oyenteMenu);
 
-        principal.setSize(650, 350);
+        principal.setSize(800, 600);
         principal.setResizable(false);
         principal.setLocation(100, 100);
         principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
