@@ -27,8 +27,8 @@ class ModeloTablaProducto extends AbstractTableModel{
     }
 
 
-    public void addRegister(String producto, double precio, String unidad){
-        list.add(new Register(producto, precio, unidad));
+    public void addRegister(String producto, double precio, String unidad, String categoria){
+        list.add(new Register(producto, precio, unidad,categoria));
         this.fireTableDataChanged();
     }
 
@@ -39,6 +39,7 @@ class ModeloTablaProducto extends AbstractTableModel{
         case 0: return r.producto; 
         case 1: return r.precio;
         case 2: return r.unidad; 
+        case 3: return r.categoria;
         }
             return null;
     }
@@ -47,11 +48,13 @@ class ModeloTablaProducto extends AbstractTableModel{
         String producto;
         double precio;
         String unidad;
+        String categoria;
 
-        public Register(String producto, double precio, String unidad) {
-            this.producto = producto;
+        public Register(String producto, double precio, String unidad,String categoria) {
+            this.producto = producto.toUpperCase();
             this.precio = precio;
             this.unidad = unidad;
+            this.categoria = categoria.toUpperCase();
         }
     }
 

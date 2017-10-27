@@ -25,6 +25,15 @@ class ModeloTablaVenta extends AbstractTableModel{
     public int getRowCount() {
         return list.size();
     }
+    
+    public void setValueCantidad(int cantidadNueva,int row){
+        String p =(String) this.getValueAt(row, 1);
+        double pr =(double) this.getValueAt(row, 2);
+        String u =(String) this.getValueAt(row, 3);
+        
+        list.set(row, new Register(cantidadNueva,p, pr, u));
+        this.fireTableDataChanged();
+    }
 
 
     public void addRegister(int cantidad,String producto, double precio, String unidad){

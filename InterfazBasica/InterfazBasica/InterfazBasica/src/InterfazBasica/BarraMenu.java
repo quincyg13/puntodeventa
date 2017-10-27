@@ -11,6 +11,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import InterfazBasica.indeu;
 import InterfazBasica.IngresarProducto;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,11 +23,15 @@ public class BarraMenu {
         JMenu producto, acercaDe;
         JMenuItem nuevoProducto,ingresarDatos,venderProducto;
     private final ModeloTablaProducto mtmp;
+    private final ArrayList<String> categoria;
 
 
-    BarraMenu(ModeloTablaProducto mtmp) {
+    BarraMenu(ModeloTablaProducto mtmp,ArrayList<String> categoria) {
         this.mtmp=mtmp;
+        this.categoria=categoria;
     }
+
+   
  
 public JMenuBar createMenuBar() {
  
@@ -47,7 +52,7 @@ public JMenuBar createMenuBar() {
             public void actionPerformed(ActionEvent evt)
             {
                 //mande a llamar mi JFrame uqe ya tenia hecho llamado indeu y lo mostre
-               new IngresarProducto(mtmp).setVisible(true);
+               new IngresarProducto(mtmp,categoria).setVisible(true);
             }
             }); 
       
