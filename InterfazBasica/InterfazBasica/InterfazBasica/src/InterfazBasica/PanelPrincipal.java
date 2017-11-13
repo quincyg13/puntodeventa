@@ -44,10 +44,10 @@ public class PanelPrincipal extends javax.swing.JPanel {
         TablaVenta.getColumn("C").setHeaderValue("precio");
         TablaVenta.getColumn("D").setHeaderValue("unidad");
 
-        mtmp.addRegister("Manzana", 10.0, "kg.");
-        mtmp.addRegister("Mango", 12.0, "kg.");
-        mtmp.addRegister("Naranja", 30.0, "kg.");
-        mtmp.addRegister("Uva", 55.0, "kg.");
+        mtmp.addRegister("Manzana", 10.0, "kg.","Frutas");
+        mtmp.addRegister("Mango", 12.0, "kg.","Frutas");
+        mtmp.addRegister("Naranja", 30.0, "kg.","Frutas");
+        mtmp.addRegister("Uva", 55.0, "kg.","Frutas");
 
     }
 
@@ -301,17 +301,37 @@ public class PanelPrincipal extends javax.swing.JPanel {
     private void agregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarProductoActionPerformed
         try {
             int row = TablaProducto.getSelectedRow();
-            //System.out.println(row);
             int cantidad = 1;
+            
+            boolean flag=true;
+            int contador = 0;
+            int cantidadAnterior=0;
             String producto = TablaProducto.getValueAt(row, 0).toString();
             double precio = (double) TablaProducto.getValueAt(row, 1);
             String unidad = TablaProducto.getValueAt(row, 2).toString();
-            mtmv.addRegister(cantidad, producto, precio, unidad);
+            
+        for (int i=0; i <= mtmv.getRowCount()-1; i++) {
+                System.out.println(i);
+                if(producto==TablaVenta.getValueAt(i, 1)){
+                flag=false;
+                contador = i;
+                cantidadAnterior = (int) TablaVenta.getValueAt(i, 0);
+                }    
+            }
+            if(flag==true){
+              mtmv.addRegister(cantidad, producto, precio, unidad);  
+            }else{
+                cantidadAnterior = cantidadAnterior + 1;
+              mtmv.setValueCantidad(cantidadAnterior,contador);
+              flag = true;
+            }
+            //System.out.println(mtmv.getRowCount());
             total = total + precio;
             PrecioTotal.setText("$ " + total);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "error no se pudo añadir la fila", "Error", JOptionPane.ERROR_MESSAGE);
         }
+        
 
     }//GEN-LAST:event_agregarProductoActionPerformed
 
@@ -349,7 +369,15 @@ public class PanelPrincipal extends javax.swing.JPanel {
                 if (resp == JOptionPane.YES_OPTION) {
                     total = total - (double) mtmv.getValueAt(fsel, 2);
                     PrecioTotal.setText("$ " + total);
-                    mtmv.removeRow(fsel);
+                    int cantidad;
+                    cantidad = (int) TablaVenta.getValueAt(fsel, 0);
+                    if (cantidad <= 1) {
+                        mtmv.removeRow(fsel);
+                    }else{
+                        cantidad =cantidad -1;
+                        mtmv.setValueCantidad(cantidad,fsel);
+                    }
+                    
 
                 }
             }

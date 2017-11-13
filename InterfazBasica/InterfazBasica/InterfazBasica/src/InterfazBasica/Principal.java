@@ -5,6 +5,7 @@
  */
 package InterfazBasica;
 
+import java.util.ArrayList;
 import javax.swing.*;
 
 /**
@@ -22,9 +23,10 @@ public class Principal {
         ModeloTablaVenta mtmv = new ModeloTablaVenta();
         ModeloTablaProducto mtmp = new ModeloTablaProducto();
         PanelPrincipal panelprincipal = new PanelPrincipal(mtmv, mtmp);
-        BarraMenu menu = new BarraMenu(mtmp);
+        ArrayList<String> categoria = new ArrayList();
+        BarraMenu menu = new BarraMenu(mtmp,categoria);
         OyentePrincipal oyente = new OyentePrincipal(panelprincipal);
-
+        
         OyenteMenu oyenteMenu = new OyenteMenu(menu);
         panelprincipal.addEventos(oyente);
         //menu.addEventos(oyenteMenu);
