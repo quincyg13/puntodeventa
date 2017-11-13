@@ -143,8 +143,8 @@ public class IngresarProducto extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    int total;
-    
+    int total,cantidad;
+    int idAlmacen;
     double precio;
     String nombre;
     String unidad;
@@ -154,13 +154,17 @@ public class IngresarProducto extends javax.swing.JFrame {
         
         nombre = txtNombre.getText().toString();
         precio = Double.parseDouble(txtPrecio.getText().toString());
-       
+        cantidad = 1;
+        idAlmacen = 1;
         unidad = jTextField1.getText().toString();
         categoria.add(txtcategoria.getText().toString());
+        
+        String q = "INSERT INTO `agilespuntodeventa`.`Producto` (`NombreProducto`, `CantidadProducto`, `PrecioProducto`, `Almacen_idAlmacen`) VALUES ('"+nombre+"','"+cantidad+"', '"+precio+"', '"+idAlmacen+"')";
+        System.out.println(q);
+        conexion.ejecutar(q);
 
         mtmp.addRegister(nombre, precio, unidad,txtcategoria.getText().toString());
         
-         JOptionPane.showMessageDialog(null, "se ingresó correctamente");
 
     }//GEN-LAST:event_aceptarActionPerformed
 

@@ -369,15 +369,7 @@ public class PanelPrincipal extends javax.swing.JPanel {
                 if (resp == JOptionPane.YES_OPTION) {
                     total = total - (double) mtmv.getValueAt(fsel, 2);
                     PrecioTotal.setText("$ " + total);
-                    int cantidad;
-                    cantidad = (int) TablaVenta.getValueAt(fsel, 0);
-                    if (cantidad <= 1) {
-                        mtmv.removeRow(fsel);
-                    }else{
-                        cantidad =cantidad -1;
-                        mtmv.setValueCantidad(cantidad,fsel);
-                    }
-                    
+                    mtmv.removeRow(fsel);
 
                 }
             }

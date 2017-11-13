@@ -13,13 +13,16 @@ import javax.swing.*;
  * @author ishrael
  */
 public class Principal {
-
+    String usuario;
+    String password;
+    boolean flag;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        JFrame principal = new JFrame("Punto de venta");
+       loggin start = new loggin();
+       start.setVisible(true);
+        /*JFrame principal = new JFrame("Punto de venta");
         ModeloTablaVenta mtmv = new ModeloTablaVenta();
         ModeloTablaProducto mtmp = new ModeloTablaProducto();
         PanelPrincipal panelprincipal = new PanelPrincipal(mtmv, mtmp);
@@ -37,7 +40,7 @@ public class Principal {
         principal.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         principal.setJMenuBar(menu.createMenuBar());
         principal.setContentPane(panelprincipal);
-        principal.setVisible(true);
+        principal.setVisible(true);*/
     }
 
 }

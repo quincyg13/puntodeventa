@@ -187,8 +187,9 @@ public class indeu extends javax.swing.JFrame {
         Lugar = txtLugar.getText();
         Direccion = txtDireccion.getText();
 
-        JOptionPane.showMessageDialog(null, "Nombre es: \n" + Nombre + "\nEl telefono es: \n" + Telefono + "\n El lugar es: \n "+Lugar+"\nLa Direccion es: \n"+Direccion+"");
-
+ 
+        String q ="INSERT INTO `agilespuntodeventa`.`organizacion` (`NombreOrg`, `Direccion`, `Lugar`, `Telefono`) VALUES ('"+Nombre+"', '"+Direccion+"', '"+Lugar+"', '"+Telefono+"');";
+        conexion.ejecutar(q);
         //guardado
         //Persona persona=new Persona(Nombre,Ocupacion,Lugar,Direccion);
         //agenda.GuardarPersona(persona);
