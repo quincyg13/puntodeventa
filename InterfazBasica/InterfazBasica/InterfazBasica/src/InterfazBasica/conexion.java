@@ -26,7 +26,8 @@ public class conexion {
  
     
     
-    static final String CONTROLADOR = "com.mysql.jdbc.Driver";
+    static final String CONTROLADOR = "com.mysql.jdbc.Driver"
+            + "";
     static final String URL_BASEDATOS = "jdbc:mysql://localhost/agilespuntodeventa";
    public  static Connection con = null; // maneja la con
     static Statement st = null; // instruccion de consulta
