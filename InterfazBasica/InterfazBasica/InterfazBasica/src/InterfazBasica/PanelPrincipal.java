@@ -5,12 +5,17 @@
  */
 package InterfazBasica;
 
+import static InterfazBasica.conexion.con;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -163,6 +168,11 @@ public class PanelPrincipal extends javax.swing.JPanel {
         });
 
         comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "producto", "unidad", "precio" }));
+        comboFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboFiltroActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Buscar:");
 
@@ -184,7 +194,7 @@ public class PanelPrincipal extends javax.swing.JPanel {
             }
         });
 
-        Categorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Categorias", "Verduras", "Frutas", "Abarrotes", "Medicina", "Ropa" }));
+        Categorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Categorias", "Verduras", "Frutas", "Abarrotes", "Medicina", "Ropa", "Calzado", "Accesorios", " " }));
         Categorias.setToolTipText("");
         Categorias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -393,7 +403,12 @@ public class PanelPrincipal extends javax.swing.JPanel {
 
     private void CategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoriasActionPerformed
         // TODO add your handling code here:
+       
     }//GEN-LAST:event_CategoriasActionPerformed
+
+    private void comboFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboFiltroActionPerformed
 
     void addEventos(OyentePrincipal oyente) {
         //ImprimirTicket.addActionListener(oyente);
