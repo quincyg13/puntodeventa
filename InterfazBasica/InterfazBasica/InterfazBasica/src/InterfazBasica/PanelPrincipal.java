@@ -5,7 +5,11 @@
  */
 package InterfazBasica;
 
+<<<<<<< HEAD
 import static InterfazBasica.conexion.con;
+=======
+import java.awt.Component;
+>>>>>>> 9efaffc8ef42eca5f9a39e603e945641666d4d64
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.*;
@@ -17,7 +21,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.RowFilter;
+import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 import javax.swing.table.TableRowSorter;
 
 /**
@@ -36,12 +43,13 @@ public class PanelPrincipal extends javax.swing.JPanel {
      */
     public PanelPrincipal(ModeloTablaVenta mtmv, ModeloTablaProducto mtmp) {
         initComponents();
+        iniTablaProducto();
         this.mtmp = mtmp;
         this.mtmv = mtmv;
-        TablaProducto.setModel(mtmp);
+        /*TablaProducto.setModel(mtmp);
         TablaProducto.getColumn("A").setHeaderValue("producto");
         TablaProducto.getColumn("B").setHeaderValue("precio");
-        TablaProducto.getColumn("C").setHeaderValue("unidad");
+        TablaProducto.getColumn("C").setHeaderValue("unidad");*/
 
         TablaVenta.setModel(mtmv);
         TablaVenta.getColumn("A").setHeaderValue("cantidad");
@@ -49,10 +57,10 @@ public class PanelPrincipal extends javax.swing.JPanel {
         TablaVenta.getColumn("C").setHeaderValue("precio");
         TablaVenta.getColumn("D").setHeaderValue("unidad");
 
-        mtmp.addRegister("Manzana", 10.0, "kg.","Frutas");
+       /* mtmp.addRegister("Manzana", 10.0, "kg.","Frutas");
         mtmp.addRegister("Mango", 12.0, "kg.","Frutas");
         mtmp.addRegister("Naranja", 30.0, "kg.","Frutas");
-        mtmp.addRegister("Uva", 55.0, "kg.","Frutas");
+        mtmp.addRegister("Uva", 55.0, "kg.","Frutas");*/
 
     }
 
@@ -69,6 +77,31 @@ public class PanelPrincipal extends javax.swing.JPanel {
             columnaABuscar = 2;
         }
         trsFiltro.setRowFilter(RowFilter.regexFilter(txtFiltro.getText(), columnaABuscar));
+    }
+    
+    private void iniTablaProducto() {
+        String q = "select CantidadProducto, NombreProducto, PrecioProducto, UnidadProducto from producto";
+        
+        TablaProducto.setModel(conexion.consultaToJtable(q));
+        TablaProducto.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+          for (int i = 0; i < TablaProducto.getColumnCount(); i++) {
+            DefaultTableColumnModel colModel = (DefaultTableColumnModel) TablaProducto.getColumnModel();
+            TableColumn col = colModel.getColumn(i);
+            int width = 0;
+
+            TableCellRenderer renderer = col.getHeaderRenderer();
+            if (renderer == null) {
+                renderer = TablaProducto.getTableHeader().getDefaultRenderer();
+            }
+            Component comp = renderer.getTableCellRendererComponent(TablaProducto, col.getHeaderValue(), false,
+                    false, 0, 0);
+            width = comp.getPreferredSize().width;
+            
+                col.setPreferredWidth(width + 80);
+        
+                
+           
+        }
     }
 
     /**
@@ -98,24 +131,12 @@ public class PanelPrincipal extends javax.swing.JPanel {
 
         TablaProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "nombre del producto", "precio", "unidad"
+                "Producto", "Title 2", "Title 3", "Title 4"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(TablaProducto);
 
         TablaVenta.setModel(new javax.swing.table.DefaultTableModel(
@@ -328,12 +349,11 @@ public class PanelPrincipal extends javax.swing.JPanel {
             boolean flag=true;
             int contador = 0;
             int cantidadAnterior=0;
-            String producto = TablaProducto.getValueAt(row, 0).toString();
-            double precio = (double) TablaProducto.getValueAt(row, 1);
-            String unidad = TablaProducto.getValueAt(row, 2).toString();
+            String producto = TablaProducto.getValueAt(row, 1).toString();
+            double precio = (double) TablaProducto.getValueAt(row, 2);
+            String unidad = TablaProducto.getValueAt(row, 3).toString();
             
         for (int i=0; i <= mtmv.getRowCount()-1; i++) {
-                System.out.println(i);
                 if(producto==TablaVenta.getValueAt(i, 1)){
                 flag=false;
                 contador = i;
@@ -347,7 +367,6 @@ public class PanelPrincipal extends javax.swing.JPanel {
               mtmv.setValueCantidad(cantidadAnterior,contador);
               flag = true;
             }
-            //System.out.println(mtmv.getRowCount());
             total = total + precio;
             PrecioTotal.setText("$ " + total);
         } catch (Exception e) {
