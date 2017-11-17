@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -107,7 +108,7 @@ System.out.println("conectado a sql");
                 Vector newRow = new Vector();
                 for (int i = 1; i <= numberOfColumns; i++) {
                     newRow.addElement(rs.getObject(i));
-                    System.out.println("" + rs.getObject(i));
+                    //System.out.println("" + rs.getObject(i));
                 }
                 rows.addElement(newRow);
             }
@@ -117,5 +118,7 @@ System.out.println("conectado a sql");
         }
         return model;
     }
+      
+     
     
 }
