@@ -44,6 +44,10 @@ class ModeloTablaProducto extends AbstractTableModel{
             return null;
     }
 
+    void addRegister(String manzana, String string, String kg, String frutas) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     class Register{
         String producto;
         double precio;

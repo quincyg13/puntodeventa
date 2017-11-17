@@ -46,6 +46,7 @@ public class PanelPrincipal extends javax.swing.JPanel {
         iniTablaProducto();
         this.mtmp = mtmp;
         this.mtmv = mtmv;
+        
         /*TablaProducto.setModel(mtmp);
         TablaProducto.getColumn("A").setHeaderValue("producto");
         TablaProducto.getColumn("B").setHeaderValue("precio");
@@ -126,6 +127,7 @@ public class PanelPrincipal extends javax.swing.JPanel {
         txtFiltro = new javax.swing.JTextField();
         eliminarProducto = new javax.swing.JButton();
         Categorias = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -223,6 +225,13 @@ public class PanelPrincipal extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -238,6 +247,8 @@ public class PanelPrincipal extends javax.swing.JPanel {
                         .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(Categorias, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -269,7 +280,8 @@ public class PanelPrincipal extends javax.swing.JPanel {
                             .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
                             .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Categorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(Categorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(81, 81, 81)
@@ -421,13 +433,39 @@ public class PanelPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_eliminarProductoActionPerformed
 
     private void CategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoriasActionPerformed
-        // TODO add your handling code here:
        
+    
     }//GEN-LAST:event_CategoriasActionPerformed
 
     private void comboFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFiltroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboFiltroActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         String opc=Categorias.getSelectedItem().toString();
+    if(opc==("Verduras")){
+        JOptionPane.showMessageDialog(null,"Prueba de cada item1");
+    }
+    if(opc==("Frutas")){
+        JOptionPane.showMessageDialog(null,"Prueba de cada item2");
+    }
+    if(opc==("Abarrotes")){
+        JOptionPane.showMessageDialog(null,"Prueba de cada item3");
+    }
+    if(opc==("Medicina")){
+        JOptionPane.showMessageDialog(null,"Prueba de cada item4");
+    }
+    if(opc==("Ropa")){
+        JOptionPane.showMessageDialog(null,"Prueba de cada item5");
+    }
+    if(opc==("Calzado")){
+        JOptionPane.showMessageDialog(null,"Prueba de cada item6");
+    }
+    if(opc==("Accesorios")){
+        JOptionPane.showMessageDialog(null,"Prueba de cada item7");
+    }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     void addEventos(OyentePrincipal oyente) {
         //ImprimirTicket.addActionListener(oyente);
@@ -445,6 +483,7 @@ public class PanelPrincipal extends javax.swing.JPanel {
     private javax.swing.JButton agregarProducto;
     private javax.swing.JComboBox<String> comboFiltro;
     private javax.swing.JButton eliminarProducto;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
