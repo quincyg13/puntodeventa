@@ -117,6 +117,7 @@ public class PanelPrincipal extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtFiltro = new javax.swing.JTextField();
         eliminarProducto = new javax.swing.JButton();
+        Categorias = new javax.swing.JComboBox<>();
 
         setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -201,6 +202,14 @@ public class PanelPrincipal extends javax.swing.JPanel {
             }
         });
 
+        Categorias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Categorias", "Verduras", "Frutas", "Abarrotes", "Medicina", "Ropa" }));
+        Categorias.setToolTipText("");
+        Categorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CategoriasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -214,6 +223,8 @@ public class PanelPrincipal extends javax.swing.JPanel {
                         .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Categorias, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -244,7 +255,8 @@ public class PanelPrincipal extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(comboFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
-                            .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Categorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(81, 81, 81)
@@ -395,6 +407,10 @@ public class PanelPrincipal extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_eliminarProductoActionPerformed
 
+    private void CategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoriasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CategoriasActionPerformed
+
     void addEventos(OyentePrincipal oyente) {
         //ImprimirTicket.addActionListener(oyente);
         // TablaProducto.addMouseListener(oyente2);
@@ -402,6 +418,7 @@ public class PanelPrincipal extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Categorias;
     private javax.swing.JButton ImprimirTicket;
     private javax.swing.JLabel PrecioTotal;
     private javax.swing.JTable TablaProducto;
