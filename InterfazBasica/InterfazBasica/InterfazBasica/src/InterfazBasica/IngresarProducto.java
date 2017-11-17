@@ -90,6 +90,12 @@ public class IngresarProducto extends javax.swing.JFrame {
 
         jLabel6.setText("Categoría:");
 
+        txtcategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtcategoriaActionPerformed(evt);
+            }
+        });
+
         jLabel2.setText("Cantidad:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -201,6 +207,10 @@ public class IngresarProducto extends javax.swing.JFrame {
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void txtcategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcategoriaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcategoriaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
