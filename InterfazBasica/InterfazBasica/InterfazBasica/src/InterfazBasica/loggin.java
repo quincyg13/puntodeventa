@@ -21,6 +21,7 @@ public class loggin extends javax.swing.JFrame {
     public loggin() {
         conexion.conectar();
         initComponents();
+        this.setLocation(100, 100);
     }
 
     /**

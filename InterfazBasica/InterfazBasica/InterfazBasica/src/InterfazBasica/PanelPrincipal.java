@@ -16,10 +16,14 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+<<<<<<< HEAD
+import java.util.ArrayList;
+=======
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+>>>>>>> df3a2cf26333285b9bc844fe3df0007dfb10e3b6
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableColumnModel;
 import javax.swing.table.DefaultTableModel;
@@ -66,19 +70,20 @@ public class PanelPrincipal extends javax.swing.JPanel {
     }
 
     public void filtro() {
-        int columnaABuscar = 0;
+        int columnaABuscar = 1;
         if (comboFiltro.getSelectedItem() == "producto") {
-            columnaABuscar = 0;
+            columnaABuscar = 1;
         }
 
         if (comboFiltro.getSelectedItem().toString() == "precio") {
-            columnaABuscar = 1;
+            columnaABuscar = 2;
         }
         if (comboFiltro.getSelectedItem() == "unidad") {
-            columnaABuscar = 2;
+            columnaABuscar = 3;
         }
         trsFiltro.setRowFilter(RowFilter.regexFilter(txtFiltro.getText(), columnaABuscar));
     }
+    
     
     private void iniTablaProducto() {
         String q = "select CantidadProducto, NombreProducto, PrecioProducto, idProducto from producto";
