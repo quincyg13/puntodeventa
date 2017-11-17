@@ -76,8 +76,6 @@ System.out.println("conectado a sql");
                rs.next();
                String nombresql = rs.getString("NombreVendedor");
                String passsql = rs.getString("password");
-               System.out.println(nombresql);
-               System.out.println(passsql);
                
                if (nombresql.equals(nombre) && passsql.equals(password)) {
                  entrar=true;
@@ -112,7 +110,6 @@ System.out.println("conectado a sql");
                 }
                 rows.addElement(newRow);
             }
-            System.out.println(rows.size());
             model = new DefaultTableModel(rows, columnNames);
         } catch (SQLException ex) {
             Logger.getLogger(conexion.class.getName()).log(Level.SEVERE, null, ex);
