@@ -5,11 +5,11 @@
  */
 package InterfazBasica;
 
-<<<<<<< HEAD
+
 import static InterfazBasica.conexion.con;
-=======
+
 import java.awt.Component;
->>>>>>> 9efaffc8ef42eca5f9a39e603e945641666d4d64
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.*;
@@ -80,7 +80,7 @@ public class PanelPrincipal extends javax.swing.JPanel {
     }
     
     private void iniTablaProducto() {
-        String q = "select CantidadProducto, NombreProducto, PrecioProducto, UnidadProducto from producto";
+        String q = "select CantidadProducto, NombreProducto, PrecioProducto, idProducto from producto";
         
         TablaProducto.setModel(conexion.consultaToJtable(q));
         TablaProducto.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
