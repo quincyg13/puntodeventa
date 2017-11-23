@@ -5,7 +5,6 @@
  */
 package InterfazBasica;
 
-
 import static InterfazBasica.conexion.con;
 
 import java.awt.Component;
@@ -48,24 +47,40 @@ public class PanelPrincipal extends javax.swing.JPanel {
     public PanelPrincipal(ModeloTablaVenta mtmv, ModeloTablaProducto mtmp) {
         initComponents();
         iniTablaProducto();
+        obtenerCategoria();
         this.mtmp = mtmp;
         this.mtmv = mtmv;
-        
+
         /*TablaProducto.setModel(mtmp);
         TablaProducto.getColumn("A").setHeaderValue("producto");
         TablaProducto.getColumn("B").setHeaderValue("precio");
         TablaProducto.getColumn("C").setHeaderValue("unidad");*/
-
         TablaVenta.setModel(mtmv);
         TablaVenta.getColumn("A").setHeaderValue("cantidad");
         TablaVenta.getColumn("B").setHeaderValue("producto");
         TablaVenta.getColumn("C").setHeaderValue("precio");
         TablaVenta.getColumn("D").setHeaderValue("unidad");
 
-       /* mtmp.addRegister("Manzana", 10.0, "kg.","Frutas");
+        /* mtmp.addRegister("Manzana", 10.0, "kg.","Frutas");
         mtmp.addRegister("Mango", 12.0, "kg.","Frutas");
         mtmp.addRegister("Naranja", 30.0, "kg.","Frutas");
         mtmp.addRegister("Uva", 55.0, "kg.","Frutas");*/
+    }
+
+    public void obtenerCategoria() {
+        boolean flag = true;
+        String categoria;
+        for (int i = 0; i <= TablaProducto.getRowCount() - 1; i++) {
+            categoria = (String) TablaProducto.getValueAt(i, 4);
+            for (int j = 0; j <= Categorias.getItemCount() - 1; j++) {
+                if (categoria == Categorias.getItemAt(i)) {
+                    flag = false;
+                }
+            }
+            if (flag) {
+                Categorias.addItem(categoria);
+            }
+        }
 
     }
 
@@ -83,14 +98,13 @@ public class PanelPrincipal extends javax.swing.JPanel {
         }
         trsFiltro.setRowFilter(RowFilter.regexFilter(txtFiltro.getText(), columnaABuscar));
     }
-    
-    
+
     private void iniTablaProducto() {
-        String q = "select CantidadProducto, NombreProducto, PrecioProducto, idProducto from producto";
-        
+        String q = "select CantidadProducto, NombreProducto, UnidadProducto, PrecioProducto,CategoriaProducto from producto";
+
         TablaProducto.setModel(conexion.consultaToJtable(q));
         TablaProducto.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-          for (int i = 0; i < TablaProducto.getColumnCount(); i++) {
+        for (int i = 0; i < TablaProducto.getColumnCount(); i++) {
             DefaultTableColumnModel colModel = (DefaultTableColumnModel) TablaProducto.getColumnModel();
             TableColumn col = colModel.getColumn(i);
             int width = 0;
@@ -102,11 +116,9 @@ public class PanelPrincipal extends javax.swing.JPanel {
             Component comp = renderer.getTableCellRendererComponent(TablaProducto, col.getHeaderValue(), false,
                     false, 0, 0);
             width = comp.getPreferredSize().width;
-            
-                col.setPreferredWidth(width + 80);
-        
-                
-           
+
+            col.setPreferredWidth(width + 80);
+
         }
     }
 
@@ -362,34 +374,34 @@ public class PanelPrincipal extends javax.swing.JPanel {
         try {
             int row = TablaProducto.getSelectedRow();
             int cantidad = 1;
-            
-            boolean flag=true;
+
+            boolean flag = true;
             int contador = 0;
-            int cantidadAnterior=0;
+            int cantidadAnterior = 0;
             String producto = TablaProducto.getValueAt(row, 1).toString();
             double precio = (double) TablaProducto.getValueAt(row, 2);
             String unidad = TablaProducto.getValueAt(row, 3).toString();
-            
-        for (int i=0; i <= mtmv.getRowCount()-1; i++) {
-                if(producto==TablaVenta.getValueAt(i, 1)){
-                flag=false;
-                contador = i;
-                cantidadAnterior = (int) TablaVenta.getValueAt(i, 0);
-                }    
+
+            for (int i = 0; i <= mtmv.getRowCount() - 1; i++) {
+                if (producto == TablaVenta.getValueAt(i, 1)) {
+                    flag = false;
+                    contador = i;
+                    cantidadAnterior = (int) TablaVenta.getValueAt(i, 0);
+                }
             }
-            if(flag==true){
-              mtmv.addRegister(cantidad, producto, precio, unidad);  
-            }else{
+            if (flag == true) {
+                mtmv.addRegister(cantidad, producto, precio, unidad);
+            } else {
                 cantidadAnterior = cantidadAnterior + 1;
-              mtmv.setValueCantidad(cantidadAnterior,contador);
-              flag = true;
+                mtmv.setValueCantidad(cantidadAnterior, contador);
+                flag = true;
             }
             total = total + precio;
             PrecioTotal.setText("$ " + total);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "error no se pudo añadir la fila", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+
 
     }//GEN-LAST:event_agregarProductoActionPerformed
 
@@ -438,8 +450,9 @@ public class PanelPrincipal extends javax.swing.JPanel {
     }//GEN-LAST:event_eliminarProductoActionPerformed
 
     private void CategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CategoriasActionPerformed
-       
-    
+        String nombre = evt.getActionCommand();
+        trsFiltro.setRowFilter(RowFilter.regexFilter(nombre, 4));
+
     }//GEN-LAST:event_CategoriasActionPerformed
 
     private void comboFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFiltroActionPerformed
@@ -448,28 +461,28 @@ public class PanelPrincipal extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         String opc=Categorias.getSelectedItem().toString();
-    if(opc==("Verduras")){
-        JOptionPane.showMessageDialog(null,"Prueba de cada item1");
-    }
-    if(opc==("Frutas")){
-        JOptionPane.showMessageDialog(null,"Prueba de cada item2");
-    }
-    if(opc==("Abarrotes")){
-        JOptionPane.showMessageDialog(null,"Prueba de cada item3");
-    }
-    if(opc==("Medicina")){
-        JOptionPane.showMessageDialog(null,"Prueba de cada item4");
-    }
-    if(opc==("Ropa")){
-        JOptionPane.showMessageDialog(null,"Prueba de cada item5");
-    }
-    if(opc==("Calzado")){
-        JOptionPane.showMessageDialog(null,"Prueba de cada item6");
-    }
-    if(opc==("Accesorios")){
-        JOptionPane.showMessageDialog(null,"Prueba de cada item7");
-    }
+        /*String opc = Categorias.getSelectedItem().toString();
+        if (opc == ("Verduras")) {
+            JOptionPane.showMessageDialog(null, "Prueba de cada item1");
+        }
+        if (opc == ("Frutas")) {
+            JOptionPane.showMessageDialog(null, "Prueba de cada item2");
+        }
+        if (opc == ("Abarrotes")) {
+            JOptionPane.showMessageDialog(null, "Prueba de cada item3");
+        }
+        if (opc == ("Medicina")) {
+            JOptionPane.showMessageDialog(null, "Prueba de cada item4");
+        }
+        if (opc == ("Ropa")) {
+            JOptionPane.showMessageDialog(null, "Prueba de cada item5");
+        }
+        if (opc == ("Calzado")) {
+            JOptionPane.showMessageDialog(null, "Prueba de cada item6");
+        }
+        if (opc == ("Accesorios")) {
+            JOptionPane.showMessageDialog(null, "Prueba de cada item7");
+        }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     void addEventos(OyentePrincipal oyente) {
